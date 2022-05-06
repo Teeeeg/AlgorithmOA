@@ -23,7 +23,7 @@ def partition(nums, left, right):
 
 def quickSort(nums):
     n = len(nums)
-    quickSortCore(nums, 0, n-1)
+    quickSortCore(nums, 0, n - 1)
 
 
 def quickSortCore(nums, left, right):
@@ -32,8 +32,8 @@ def quickSortCore(nums, left, right):
 
     pivotIndex = partition(nums, left, right)
 
-    quickSortCore(nums, left, pivotIndex-1)
-    quickSortCore(nums, pivotIndex+1, right)
+    quickSortCore(nums, left, pivotIndex - 1)
+    quickSortCore(nums, pivotIndex + 1, right)
 
 
 nums = [3, 2, 1, 5, 4]

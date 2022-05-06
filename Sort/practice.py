@@ -4,7 +4,7 @@ def mySort(nums):
         return
 
     mid = n // 2
-    left = nums[: mid]
+    left = nums[:mid]
     right = nums[mid:]
     mySort(left)
     mySort(right)
