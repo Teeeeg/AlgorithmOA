@@ -9,7 +9,8 @@ def selectionSort(nums):
         for j in range(i+1, n):
             minIndex = j if nums[minIndex] > nums[j] else minIndex
         # 交换数字
-        nums[minIndex], nums[i] = nums[i], nums[minIndex]
+        if minIndex != i:
+            nums[minIndex], nums[i] = nums[i], nums[minIndex]
 
     return nums
 
