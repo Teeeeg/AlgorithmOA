@@ -37,6 +37,7 @@ class TripleInOne:
         return index == 0
 
 
+# 一维数组
 class TripleInOne1:
 
     def __init__(self, stackSize: int):
