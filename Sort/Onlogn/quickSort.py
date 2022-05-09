@@ -32,7 +32,7 @@ def partition1(nums, left, right):
     pivotVal = nums[left]
     i, j = left, right
     while i < j:
-        # 先从最右边找到一个比它小的
+        # 必须先从最右边找到一个比它小的
         while i < j and nums[j] > pivotVal:
             j -= 1
         # 找比他大的
