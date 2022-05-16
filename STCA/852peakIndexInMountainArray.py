@@ -2,6 +2,7 @@ from typing import List
 
 
 class Solution:
+
     def peakIndexInMountainArray(self, arr: List[int]) -> int:
         n = len(arr)
         left, right = 0, n - 1
