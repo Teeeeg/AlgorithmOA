@@ -1,41 +1,64 @@
-def test_multi_pack1():
-    weight = [1, 3, 4]
-    value = [15, 20, 30]
-    nums = [2, 3, 2]
-    bag_weight = 10
-    for i in range(len(nums)):
-        # 将物品展开数量为1
-        while nums[i] > 1:
-            weight.append(weight[i])
-            value.append(value[i])
-            nums[i] -= 1
-
-    dp = [0]*(bag_weight + 1)
-    # 遍历物品
-    for i in range(len(weight)):
-        # 遍历背包
-        for j in range(bag_weight, weight[i] - 1, -1):
-            dp[j] = max(dp[j], dp[j - weight[i]] + value[i])
-
-    print(" ".join(map(str, dp)))
+from random import randint
 
 
-def test_multi_pack2():
-    '''版本：改变遍历个数'''
-    weight = [1, 3, 4]
-    value = [15, 20, 30]
-    nums = [2, 3, 2]
-    bag_weight = 10
+class MyHeap:
 
-    dp = [0]*(bag_weight + 1)
-    for i in range(len(weight)):
-        for j in range(bag_weight, weight[i] - 1, -1):
-            # 以上是01背包，加上遍历个数
-            for k in range(1, nums[i] + 1):
-                if j - k*weight[i] >= 0:
-                    dp[j] = max(dp[j], dp[j - k*weight[i]] + k*value[i])
+    def __init__(self, asc=True) -> None:
+        self.data = []
+        self.asc = asc
 
-    print(" ".join(map(str, dp)))
+    @property
+    def size(self):
+        return len(self.data)
+
+    def comparator(self, val1, val2):
+        return val1 < val2 if self.asc else False
+
+    def swap(self, i1, i2):
+        self.data[i1], self.data[i2] = self.data[i2], self.data[i1]
+
+    def siftDown(self, index):
+        while index * 2 + 1 < self.size:
+            leftChild = index * 2 + 1
+            rightChild = index * 2 + 2
+            smallest = index
+
+            if self.comparator(self.data[leftChild], self.data[smallest]):
+                smallest = leftChild
+
+            if rightChild < self.size and self.comparator(
+                    self.data[rightChild], self.data[smallest]):
+                smallest = rightChild
+
+            if smallest == index:
+                break
+
+            self.swap(smallest, index)
+            index = smallest
+
+    def siftUp(self, index):
+        while index:
+            parent = (index - 1) // 2
+            if self.comparator(self.data[index], self.data[parent]):
+                self.swap(index, parent)
+
+            index = parent
+
+    def push(self, value):
+        self.data.append(value)
+        self.siftUp(self.size - 1)
+
+    def pop(self):
+        self.swap(0, self.size - 1)
+        value = self.data.pop()
+        self.siftDown(0)
+        return value
 
 
-test_multi_pack2()
+heap = MyHeap()
+for _ in range(20):
+    val = randint(1, 20)
+    heap.push(val)
+
+for _ in range(20):
+    print(heap.pop())
