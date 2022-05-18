@@ -25,6 +25,7 @@ def partition(nums, left, right):
     # 返回基准点所在元素的正确索引
     return i
 
+
 # 双边循环
 
 
@@ -33,7 +34,7 @@ def partition1(nums, left, right):
     i, j = left, right
     while i < j:
         # 必须先从最右边找到一个比它小的
-        while i < j and nums[j] > pivotVal:
+        while i < j and nums[j] >= pivotVal:
             j -= 1
         # 找比他大的
         while i < j and nums[i] <= pivotVal:
@@ -50,14 +51,14 @@ def quickSort(nums, left, right):
         return
 
     pivotIndex = partition1(nums, left, right)
-    quickSort(nums, left, pivotIndex-1)
-    quickSort(nums, pivotIndex+1, right)
+    quickSort(nums, left, pivotIndex - 1)
+    quickSort(nums, pivotIndex + 1, right)
 
 
-nums = [3, 2, 1, 5, 4]
-# nums1 = [2, 3, 5, 7, 1, 6, 3, 3, 4, 7, 3, 2, 1]
+# nums = [3, 2, 1, 5, 4]
+nums = [2, 3, 5, 7, 1, 6, 3, 3, 4, 7, 3, 2, 1]
 
 # quickSort(nums1, 0, len(nums1)-1)
-quickSort(nums, 0, len(nums)-1)
+quickSort(nums, 0, len(nums) - 1)
 print(nums)
 # print(nums1)
