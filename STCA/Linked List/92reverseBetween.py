@@ -12,12 +12,11 @@ class Solution:
         if not head:
             return head
 
-        dummyHead = ListNode(next=head)
         pre = None
-        cur = dummyHead
+        cur = head
 
         # cur遍历到要被翻转的链表头
-        for _ in range(left):
+        for _ in range(left - 1):
             pre = cur
             cur = pre.next
 
@@ -40,7 +39,9 @@ class Solution:
         # 连接
         if tailOfPre:
             tailOfPre.next = headOfSub
+        else:
+            head = headOfSub  # type: ignore
 
         tailOfSub.next = headOfPost
 
-        return dummyHead.next
+        return head
