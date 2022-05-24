@@ -6,7 +6,7 @@ def selectionSort(nums):
     for i in range(n):
         minIndex = i
         # 通过对比，找到未排序数组中最小的下标
-        for j in range(i+1, n):
+        for j in range(i + 1, n):
             minIndex = j if nums[minIndex] > nums[j] else minIndex
         # 交换数字
         if minIndex != i:
