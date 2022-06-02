@@ -21,7 +21,6 @@ class Solution:
 
         return res
 
-        # 初始化
 
 
 nums1 = [0, 0, 0, 0, 0]
