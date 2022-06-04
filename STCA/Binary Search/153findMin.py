@@ -27,6 +27,6 @@ class Solution:
         return nums[0]
 
 
-nums = [11, 13, 15, 17]
+nums = [1, 1, 1, 1, 1, 2, 1, 1, 1]
 slt = Solution()
 print(slt.findMin(nums))
