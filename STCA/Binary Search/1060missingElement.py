@@ -18,18 +18,21 @@ class Solution:
         while left <= right:
             mid = (left + right) // 2
             count = self.getCount(nums, mid)
+            # 返回上限
+            if left < mid < right and self.getCount(nums, mid + 1) < count < self.getCount(nums, mid + 1):
+                return mid
 
             if count < k:
                 left = mid + 1
             else:
                 right = mid - 1
-        # 返回上限
-        return left
+        # 否则返回上限left
+        return right
 
     def missingElement(self, nums: List[int], k: int) -> int:
         index = self.binarySearch(nums, k)
         # 最终答案应该是上一个节点 + 偏移 - 上一个节点已经的偏移
-        res = nums[index - 1] + k - self.getCount(nums, index - 1)
+        res = nums[index] + k - self.getCount(nums, index)
 
         return res
 
