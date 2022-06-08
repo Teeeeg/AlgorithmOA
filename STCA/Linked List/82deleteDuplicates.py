@@ -10,6 +10,7 @@ class ListNode:
 
 class Solution:
     # 递归
+    # 自顶向下
 
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         # 当前为空或只有一个
@@ -49,6 +50,7 @@ class Solution:
                 pre = cur
             else:
                 # 跳过这个重复的一块
+                # 则结果指针指向下一段的开始
                 pre.next = cur.next
             cur = cur.next
 
