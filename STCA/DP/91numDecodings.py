@@ -22,6 +22,6 @@ class Solution:
         return dp[-1]
 
 
-s = "2611055971756562"
+s = "12258"
 slt = Solution()
 print(slt.numDecodings(s))
