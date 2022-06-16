@@ -42,7 +42,26 @@ class Solution:
 
         return perimeter
 
+    def islandPerimeter1(self, grid: List[List[int]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+        dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+
+        res = 0
+
+        for i in range(m):
+            for j in range(n):
+                cur = [i, j]
+                if grid[i][j] == 1:
+                    for dir in dirs:
+                        post = [cur[0] + dir[0], cur[1] + dir[1]]
+                        if post[0] < 0 or post[1] < 0 or post[0] >= m or post[1] >= n or grid[post[0]][
+                                post[1]] == 0 or grid[post[0]][post[1]] == 0:
+                            res += 1
+
+        return res
+
 
 grid = [[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]
 slt = Solution()
-print(slt.islandPerimeter(grid))
+print(slt.islandPerimeter1(grid))
