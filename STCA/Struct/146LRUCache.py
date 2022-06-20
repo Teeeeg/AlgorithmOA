@@ -35,6 +35,9 @@ class LRUCache:
         post.pre = pre
         return node
 
+    def removeTail(self):
+        return self.removeNode(self.tail.pre)
+
     def moveToHead(self, node: Node):
         self.removeNode(node)
         self.addAtHead(node)
@@ -54,7 +57,7 @@ class LRUCache:
             self.size += 1
 
             if self.size > self.capacity:
-                delNode = self.removeNode(self.tail.pre)
+                delNode = self.removeTail()
                 delKey = delNode.key
                 self.cache.pop(delKey)
                 self.size -= 1
