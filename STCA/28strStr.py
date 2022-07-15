@@ -24,6 +24,7 @@ class Solution:
             if haystack[i] == needle[j]:
                 j += 1
             if j == len(needle):
+                # 因为最后 i 指向的是needle的最后一个字符，所以需要加1
                 return i - len(needle) + 1
 
         return -1
