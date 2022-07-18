@@ -1,7 +1,7 @@
 class Solution:
 
     def __init__(self) -> None:
-        self.nums = [0]
+        self.nums = []
         self.ops = []
 
     def calculate(self, s: str) -> int:
@@ -42,8 +42,8 @@ class Solution:
                     # 是运算符号
                     # 处理括号里第一个元素为运算符的情况
                     # 若上一个为+，- ， 添加0为保证0-和0+
-                    if i > 0 and s[i - 1] == '(' or s[i - 1] == '-' or s[i - 1] == '+':
-                        self.nums.append(0)
+                    # if i > 0 and s[i - 1] == '(' or s[i - 1] == '-' or s[i - 1] == '+':
+                    #     self.nums.append(0)
                     # 一直往前计算到'('
                     while self.ops and self.ops[-1] != '(':
                         # 若当前运算符的优先较小，则把之前的都计算一下
@@ -89,5 +89,3 @@ class Solution:
 s = "(0-3)/4"
 slt = Solution()
 print(slt.calculate(s))
-
-print((-3 // 4))
