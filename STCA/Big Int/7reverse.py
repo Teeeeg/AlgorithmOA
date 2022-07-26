@@ -25,4 +25,3 @@ print(s.reverse(-123))
 
 print(1 << 31)
 print((1 << 31) - 1)
-42
