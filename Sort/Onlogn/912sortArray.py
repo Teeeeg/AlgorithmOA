@@ -29,10 +29,14 @@ class Solution:
 
     def sortArray(self, nums: List[int]) -> List[int]:
         n = len(nums)
+        # root is the index 0, so revert the process to get the biggest in the end
         for i in range(n - 1, -1, -1):
             self.siftDown(nums, i, n)
 
         for i in range(n - 1, -1, -1):
+            # root is the biggest
+            # swap it to the end
+            # siftDown to iterate
             self.swap(nums, 0, i)
             self.siftDown(nums, 0, i)
 

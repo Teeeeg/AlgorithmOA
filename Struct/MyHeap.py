@@ -12,8 +12,7 @@ class MyHeap:
         return len(self.data)
 
     def swap(self, index1, index2):
-        self.data[index1], self.data[index2] = self.data[index2], self.data[
-            index1]
+        self.data[index1], self.data[index2] = self.data[index2], self.data[index1]
 
     # 用于判断前者是否比后者小
     def camparator(self, nums1, nums2):
@@ -39,7 +38,7 @@ class MyHeap:
 
     def siftDown(self, index):
         # 与其children对比
-        # 比他们大就下城
+        # 比他们大就下沉
         while index * 2 + 1 < self.size:
             leftChildIndex = index * 2 + 1
             rightChildIndex = index * 2 + 2
@@ -49,8 +48,7 @@ class MyHeap:
             if self.camparator(self.data[leftChildIndex], self.data[smallest]):
                 smallest = leftChildIndex
 
-            if rightChildIndex < self.size and self.camparator(
-                    self.data[rightChildIndex], self.data[smallest]):
+            if rightChildIndex < self.size and self.camparator(self.data[rightChildIndex], self.data[smallest]):
                 smallest = rightChildIndex
 
             if smallest == index:

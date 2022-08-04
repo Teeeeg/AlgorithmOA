@@ -4,36 +4,33 @@ from typing import List
 
 class Solution:
 
-    def isValid(self, matrix, row, col, newRow, newCol):
-        return 0 <= newRow < self.m and 0 <= newCol < self.n and matrix[newRow][newCol] > matrix[row][col]
+    def isValid(self, row, col, newRow, newCol):
+        return 0 <= newRow < self.m and 0 <= newCol < self.n and self.matrix[newRow][newCol] > self.matrix[row][col]
 
-    def longestIncreasingPathCore(self, matrix: List[List[int]], row, col):
-        dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+    def longestIncreasingPathCore(self, row, col):
+        if self.longest[row][col]:
+            return self.longest[row][col]
 
-        if self.memo[row][col]:
-            return self.memo[row][col]
+        self.longest[row][col] = 1
+        for dir in self.dirs:
+            nr = row + dir[0]
+            nc = col + dir[1]
+            if self.isValid(row, col, nr, nc):
+                self.longest[row][col] = max(self.longest[row][col], self.longestIncreasingPathCore(nr, nc) + 1)
 
-        self.memo[row][col] += 1
-
-        for dir in dirs:
-            newRow = row + dir[0]
-            newCol = col + dir[1]
-            if self.isValid(matrix, row, col, newRow, newCol):
-                self.memo[row][col] = max(self.memo[row][col],
-                                          self.longestIncreasingPathCore(matrix, newRow, newCol) + 1)
-
-        return self.memo[row][col]
+        return self.longest[row][col]
 
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        self.dirs = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        self.matrix = matrix
         self.m = len(matrix)
         self.n = len(matrix[0])
-        self.memo = [[0] * self.n for _ in range(self.m)]
+        self.longest = [[0] * self.n for _ in range(self.m)]
 
         res = 0
-
-        for i in range(self.m):
-            for j in range(self.n):
-                res = max(res, self.longestIncreasingPathCore(matrix, i, j))
+        for row in range(self.m):
+            for col in range(self.n):
+                res = max(res, self.longestIncreasingPathCore(row, col))
 
         return res
 
@@ -82,5 +79,5 @@ class Solution1:
 
 
 matrix = [[9, 9, 4], [6, 6, 8], [2, 1, 1]]
-slt = Solution1()
+slt = Solution()
 print(slt.longestIncreasingPath(matrix))
