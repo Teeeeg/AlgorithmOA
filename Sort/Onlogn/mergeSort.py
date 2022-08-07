@@ -1,39 +1,47 @@
-def mergeSort(nums):
-    n = len(nums)
-    # base case 1个的时候
-    if n <= 1:
+from typing import List
+
+
+def mergeTwo(nums: List[int], left, mid, right):
+    tmp = []
+    l = left
+    r = mid + 1
+
+    while l <= mid and r <= right:
+        if nums[l] <= nums[r]:
+            tmp.append(nums[l])
+            l += 1
+        else:
+            tmp.append(nums[r])
+            r += 1
+
+    while l <= mid:
+        tmp.append(nums[l])
+        l += 1
+
+    while r <= right:
+        tmp.append(nums[r])
+        r += 1
+
+    nums[left:right + 1] = tmp[:]
+
+
+def mergeSortCore(nums: List[int], left, right):
+    if left >= right:
         return
 
-    mid = n // 2
-    left = nums[:mid]
-    right = nums[mid:]
-
-    # 递归调用
-    mergeSort(left)
-    mergeSort(right)
-
-    # 递归处理逻辑
-    i = j = k = 0
-    while i < len(left) and j < len(right):
-        if left[i] < right[j]:
-            nums[k] = left[i]
-            i += 1
-        else:
-            nums[k] = right[j]
-            j += 1
-        k += 1
-
-    while i < len(left):
-        nums[k] = left[i]
-        i += 1
-        k += 1
-
-    while j < len(right):
-        nums[k] = right[j]
-        j += 1
-        k += 1
+    mid = (left + right) >> 1
+    mergeSortCore(nums, left, mid)
+    mergeSortCore(nums, mid + 1, right)
+    mergeTwo(nums, left, mid, right)
 
 
-nums = [3, 2, 1, 5, 4]
+def mergeSort(nums: List[int]):
+    if not nums:
+        return
+    n = len(nums)
+    mergeSortCore(nums, 0, n - 1)
+
+
+nums = [1, 3, 2, 3, 1]
 mergeSort(nums)
 print(nums)
