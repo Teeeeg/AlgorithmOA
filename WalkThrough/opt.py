@@ -1,4 +1,5 @@
 # brute
+# O(n2)
 def solve(x, y):
     n = len(x)
     res = 0
