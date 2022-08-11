@@ -1,7 +1,7 @@
 from typing import List
 
 
-class UnionFind:
+class DisjointSet:
 
     def __init__(self, size) -> None:
         self.root = [i for i in range(size + 1)]
@@ -25,7 +25,7 @@ class Solution:
 
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         n = len(edges)
-        uf = UnionFind(n)
+        uf = DisjointSet(n)
 
         for edge in edges:
             if uf.isConnected(edge[0], edge[1]):

@@ -1,7 +1,7 @@
 from typing import List
 
 
-class UnionFind:
+class DisjointSet:
 
     def __init__(self, size) -> None:
         self.root = [i for i in range(size)]
@@ -28,7 +28,7 @@ class Solution:
 
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         n = len(isConnected)
-        uf = UnionFind(n)
+        uf = DisjointSet(n)
 
         for x in range(n):
             for y in range(x + 1, n):
@@ -38,9 +38,7 @@ class Solution:
         return uf.count
 
 
-isConnected = [[1, 1, 1, 0, 1, 1, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0, 0, 1, 0, 0], [1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 1, 1, 0, 0, 0, 1, 0], [1, 0, 0, 1, 1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-               [1, 0, 0, 0, 0, 0, 1, 0, 1, 0], [0, 1, 0, 0, 0, 0, 0, 1, 0, 1], [0, 0, 0, 1, 0, 0, 1, 0, 1, 1],
-               [0, 0, 0, 0, 0, 0, 0, 1, 1, 1]]
+isConnected = [[1, 1, 1, 0, 1, 1, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0, 0, 1, 0, 0], [1, 0, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 0, 1, 0], [1, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+               [1, 0, 0, 0, 0, 1, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 1, 0, 1, 0], [0, 1, 0, 0, 0, 0, 0, 1, 0, 1], [0, 0, 0, 1, 0, 0, 1, 0, 1, 1], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1]]
 slt = Solution()
 print(slt.findCircleNum(isConnected))

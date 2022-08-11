@@ -1,7 +1,7 @@
 from typing import List
 
 
-class UnionFind:
+class DisjointSet:
 
     def __init__(self, size) -> None:
         self.root = [i for i in range(size + 1)]
@@ -24,7 +24,7 @@ class UnionFind:
 class Solution:
 
     def isTree(self, edges: List[List[int]], removable: List[int]):
-        uf = UnionFind(len(edges))
+        uf = DisjointSet(len(edges))
         for edge in edges:
             if edge == removable:
                 continue
@@ -59,7 +59,7 @@ class Solution:
             else:
                 return removables[0]
 
-        uf = UnionFind(len(edges))
+        uf = DisjointSet(len(edges))
 
         for edge in edges:
             if uf.isConnected(edge[0], edge[1]):

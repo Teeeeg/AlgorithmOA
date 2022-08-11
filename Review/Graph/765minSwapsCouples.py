@@ -33,7 +33,7 @@ class Solution:
         return res
 
 
-class UnionFind:
+class DisjointSet:
 
     def __init__(self, size) -> None:
         self.root = [i for i in range(size)]
@@ -61,7 +61,7 @@ class Solution1:
     # for every num, its coupleID comes to num // 2
     def minSwapsCouples(self, row: List[int]) -> int:
         n = len(row)
-        uf = UnionFind(n)
+        uf = DisjointSet(n)
         for i in range(0, n, 2):
             uf.union(row[i] // 2, row[i + 1] // 2)
         return uf.getCount()

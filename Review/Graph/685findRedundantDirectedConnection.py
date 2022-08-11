@@ -1,7 +1,7 @@
 from typing import List
 
 
-class UnionFind:
+class DisjointSet:
 
     def __init__(self, size) -> None:
         self.size = size
@@ -28,11 +28,11 @@ class UnionFind:
 class Solution:
     # [u, v] u -> v
     # a tree add one edge it will have two vertex with two indegree
-    # if it has no two indegree, it go normal unionfind
+    # if it has no two indegree, it go normal DisjointSet
     def isTree(self, edges: List[List[int]], removable: List[int]):
-        # use unionfind to judge it is a tree or not
+        # use DisjointSet to judge it is a tree or not
         n = len(edges)
-        uf = UnionFind(n + 1)
+        uf = DisjointSet(n + 1)
         for edge in edges:
             if edge == removable:
                 continue
@@ -67,7 +67,7 @@ class Solution:
             else:
                 return removable[0]
 
-        uf = UnionFind(n + 1)
+        uf = DisjointSet(n + 1)
         # if it do not have two indegrees
         for edge in edges:
             if uf.isConnected(edge[0], edge[1]):
