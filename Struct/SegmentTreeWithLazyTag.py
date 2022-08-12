@@ -7,7 +7,7 @@ class Node:
         self.lazy = lazy
 
 
-# sum Tree withlazy tag
+# sum Tree with lazy tag
 # update current node and record updates in lazy
 # update it's children in need
 class SegmentTree:
@@ -91,12 +91,15 @@ class SegmentTree:
         # update current node
         self.pushUp(tIndex)
 
-    def update(self, tLeft, tRight, value):
+    def updateSegment(self, tLeft, tRight, value):
         self.updateCore(0, 0, self.size - 1, tLeft, tRight, value)
+
+    def update(self, index, value):
+        self.updateCore(0, 0, self.size - 1, index, index, value)
 
 
 nums = [0, 1, 3, 4, 6]
 segTree = SegmentTree(nums)
-print(segTree.query(0, 4))
-segTree.update(0, 4, 4)
-print(segTree.query(0, 4))
+print(segTree.query(4, 4))
+segTree.update(4, 4)
+print(segTree.query(4, 4))

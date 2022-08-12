@@ -43,27 +43,30 @@ class SegmentTree:
     def query(self, qLeft, qRight):
         return self.queryCore(0, 0, self.size - 1, qLeft, qRight)
 
-    def updateCore(self, tIndex, left, right, index, value):
-        # find leaf and leaf is index
-        if left == right and left == index:
-            self.tree[tIndex] = value
+    def updateCore(self, tIndex, left, right, tLeft, tRight, value):
+        # off grid
+        if tLeft > right or tRight < left:
+            return
+
+        if tLeft <= left and tRight >= right:
+            self.tree[tIndex] += (right - left + 1) * value
             return
 
         mid = (left + right) // 2
-        # <= mid because use [left, mid]
-        if index <= mid:
-            self.updateCore(tIndex * 2 + 1, left, mid, index, value)
-        else:
-            self.updateCore(tIndex * 2 + 2, mid + 1, right, index, value)
-        # update from bottom
-        self.tree[tIndex] = self.tree[tIndex * 2 + 1] + self.tree[tIndex * 2 + 2]
+
+        self.updateCore(tIndex * 2 + 1, left, mid, tLeft, tRight, value)
+        self.updateCore(tIndex * 2 + 2, mid + 1, right, tLeft, tRight, value)
+
+    def updateSegment(self, tLeft, tRight, value):
+        self.updateCore(0, 0, self.size - 1, tLeft, tRight, value)
 
     def update(self, index, value):
-        self.updateCore(0, 0, self.size - 1, index, value)
+        self.updateCore(0, 0, self.size - 1, index, index, value)
 
 
 nums = [0, 1, 3, 4, 6]
 segTree = SegmentTree(nums)
-print(segTree.query(2, 3))
-segTree.update(2, 4)
-print(segTree.query(2, 3))
+print(segTree.query(2, 4))
+# segTree.update(3, 4)
+segTree.updateSegment(2, 4, 4)
+print(segTree.query(2, 4))
