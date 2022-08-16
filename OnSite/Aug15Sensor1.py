@@ -8,7 +8,7 @@ def solve(matrix):
         return result
     m, n = len(matrix), len(matrix[0])
     i, j = 0, 0
-    while count < m * n:
+    while count < n**2:
         up = True
         while up == True and i >= 0 and j < n:
             result.append(matrix[i][j])
