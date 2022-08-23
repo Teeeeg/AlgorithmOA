@@ -8,7 +8,7 @@ class Solution:
         b = 131
         p = 10**9 + 7
         for ch in needle:
-            digit = ord(ch) - ord('a') + 1
+            digit = ord(ch)
             needleHash = (needleHash * b + digit) % p
 
         # kind of like the prefixSum
@@ -16,7 +16,7 @@ class Solution:
         powerOfB = [1] + [0] * m
         for i in range(m):
             ch = haystack[i]
-            digit = ord(ch) - ord('a') + 1
+            digit = ord(ch)
             prefixHash[i + 1] = (prefixHash[i] * b + digit) % p
             powerOfB[i + 1] = (powerOfB[i] * b) % p
 
