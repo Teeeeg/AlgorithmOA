@@ -17,16 +17,11 @@ class Solution:
                 return nums[mid]
             # 若left到mid之间有序
             # 则缩小范围到[mid+1, right]
-            if nums[left] < nums[mid]:
-                left = mid + 1
+            if nums[right] > nums[mid]:
+                right = mid - 1
             # mid到right上有序
             # 缩小到[left, mid-1]
             else:
-                right = mid - 1
+                left = mid + 1
         # 若循环结束，说明没有旋转，则返回第一个
         return nums[0]
-
-
-nums = [1, 1, 1, 1, 1, 2, 1, 1, 1]
-slt = Solution()
-print(slt.findMin(nums))

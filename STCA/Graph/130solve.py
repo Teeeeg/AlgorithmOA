@@ -2,48 +2,53 @@ from typing import List
 
 
 class Solution:
-    # 从边缘出发，标记从边缘出发的O为S
-    # 第二次遍历，若标记为S，表明此节点未被包围，则重新标为O
-    # 若标记为O，表明该节点被包围，标记为X
 
-    def dfs(self, board: List[List[str]], row: int, col: int):
-        m = len(board)
-        n = len(board[0])
-        dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-        # 若当前节点不是O则return
-        if board[row][col] != 'O':
-            return
-        # 标记为S
-        board[row][col] = 'S'
+    def solveCore(self, row, col, flag, target):
+        self.board[row][col] = target
 
-        for dir in dirs:
-            nextRow = row + dir[0]
-            nextCol = col + dir[1]
-            # 递归，深度优先
-            if 0 <= nextRow < m and 0 <= nextCol < n and board[nextRow][nextCol] == 'O':
-                self.dfs(board, nextRow, nextCol)
+        for dir in self.dirs:
+            nr = row + dir[0]
+            nc = col + dir[1]
+            if 0 <= nr < self.m and 0 <= nc < self.n and self.board[nr][nc] == flag:
+                self.solveCore(nr, nc, flag, target)
 
     def solve(self, board: List[List[str]]) -> None:
-        m = len(board)
-        n = len(board[0])
+        # use df/bfs to tag
+        if not board and not board[0]:
+            return
 
-        for i in range(n):
-            self.dfs(board, 0, i)
-            self.dfs(board, m - 1, i)
+        self.board = board
+        self.m = len(self.board)
+        self.n = len(self.board[0])
+        self.dirs = [[0, 1], [1, 0], [0, -1], [-1, 0]]
 
-        for i in range(m):
-            self.dfs(board, i, 0)
-            self.dfs(board, i, n - 1)
+        for row in range(self.m):
+            if self.board[row][0] == 'O':
+                self.solveCore(row, 0, 'O', 'S')
 
-        for i in range(m):
-            for j in range(n):
-                if board[i][j] == 'S':
-                    board[i][j] = 'O'
-                elif board[i][j] == 'O':
-                    board[i][j] = 'X'
+        for col in range(self.n):
+            if self.board[0][col] == 'O':
+                self.solveCore(0, col, 'O', 'S')
+
+        for col in range(self.n):
+            if self.board[self.m - 1][col] == 'O':
+                self.solveCore(self.m - 1, col, 'O', 'S')
+
+        for row in range(self.m):
+            if self.board[row][self.n - 1] == 'O':
+                self.solveCore(row, self.n - 1, 'O', 'S')
+
+        # iterate through to change
+        for row in range(self.m):
+            for col in range(self.n):
+                if self.board[row][col] == 'S':
+                    self.board[row][col] = 'O'
+                elif self.board[row][col] == 'O':
+                    self.board[row][col] = 'X'
 
 
-board = [["X", "X", "X", "X"], ["X", "O", "O", "X"], ["X", "X", "O", "X"], ["X", "O", "X", "X"]]
+board = [["O", "O", "O"], ["O", "O", "O"], ["O", "O", "O"]]
+
 slt = Solution()
 slt.solve(board)
 print(board)

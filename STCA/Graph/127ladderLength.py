@@ -1,86 +1,66 @@
 from collections import deque
-from typing import List, Set
+from typing import List
 
 
 class Solution:
 
-    def nextWords(self, curWord: str, wordList: Set[str]):
-        res = []
-        for word in wordList:
-            count = 0
-            if len(word) == len(curWord):
-                for i in range(len(word)):
-                    if curWord[i] != word[i]:
-                        count += 1
-            if count == 1:
-                res.append(word)
-        return res
+    def getNeighbors(self, word, steps):
+        word = list(word)
+        n = len(word)
+        neighbors = []
+        for i in range(n):
+            orgCh = word[i]
+            for offset in range(26):
+                newCh = chr(offset + ord('a'))
+                if newCh == orgCh:
+                    continue
+                word[i] = newCh
+                newWord = ''.join(word)
+                if newWord in self.wordSet and newWord not in steps:
+                    neighbors.append(newWord)
+            word[i] = orgCh
 
-    def ladderLength1(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        wordSet = set(wordList)
-        queue1 = deque([beginWord])
-        queue2 = deque([endWord])
-        mapping = {beginWord: 1}
+        return neighbors
 
-        while queue1 and queue2:
-            n = len(queue1)
+    def bfs(self, queue, steps, otherSteps):
+
+        while queue:
+            n = len(queue)
             for _ in range(n):
-                curWord = queue1.popleft()
-                path = mapping[curWord]
-                if curWord == endWord:
-                    return path
-                nextWords = self.nextWords(curWord, wordSet)
-                for word in nextWords:
-                    if word not in mapping:
-                        mapping[word] = path + 1
-                        queue1.append(word)
+                curWord = queue.popleft()
+                step = steps[curWord]
+                for neighbor in self.getNeighbors(curWord, steps):
+                    if neighbor in otherSteps:
+                        return step + otherSteps[neighbor]
+                    steps[neighbor] = step + 1
+                    queue.append(neighbor)
 
         return 0
 
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList:
             return 0
-        wordSet = set(wordList)
-        queue1 = deque([beginWord])
-        queue2 = deque([endWord])
-        visited1 = set()
-        visited1.add(beginWord)
-        visited2 = set()
-        visited2.add(endWord)
 
-        res = 1
+        self.wordSet = set(wordList)
+        steps = {beginWord: 1}
+        steps1 = {endWord: 1}
 
-        while queue1 and queue2:
-            n = len(queue1)
-            for _ in range(n):
-                curWord = queue1.popleft()
-                if curWord in visited2:
-                    return res * 2 - 1
-                nextWords = self.nextWords(curWord, wordSet)
-                for word in nextWords:
-                    if word not in visited1:
-                        visited1.add(word)
-                        queue1.append(word)
+        queue = deque([beginWord])
+        queue1 = deque([endWord])
 
-            n = len(queue2)
-            for _ in range(n):
-                curWord = queue2.popleft()
-                if curWord in visited1:
-                    return res * 2
-                nextWords = self.nextWords(curWord, wordSet)
-                for word in nextWords:
-                    if word not in visited2:
-                        visited2.add(word)
-                        queue2.append(word)
-
-            res += 1
+        while queue or queue1:
+            res = self.bfs(queue, steps, steps1)
+            if res != 0:
+                return res
+            res = self.bfs(queue1, steps1, steps)
+            if res != 0:
+                return res
 
         return 0
 
 
-beginWord = "hit"
-endWord = "cog"
-wordList = ["hot", "dot", "dog", "lot", "log", "cog"]
-
+beginWord = "hbo"
+endWord = "qbx"
+wordList = ["abo", "hco", "hbw", "ado", "abq", "hcd", "hcj", "hww", "qbq", "qby", "qbz", "qbx", "qbw"]
 slt = Solution()
-print(slt.ladderLength1(beginWord, endWord, wordList))
+print(slt.ladderLength(beginWord, endWord, wordList))

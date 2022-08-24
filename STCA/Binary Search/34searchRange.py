@@ -3,39 +3,41 @@ from typing import List
 
 class Solution:
 
-    def binarySearch(self, nums: List[int], target: int, findLeft: bool):
-        left, right = 0, len(nums) - 1
+    def binarySearch(self, nums: List[int], target, flag):
+        n = len(nums)
+        left = 0
+        right = n - 1
         res = -1
 
         while left <= right:
-            mid = (left + right) // 2
-            # 当等于目标值的时候
+            mid = (left + right) >> 1
             if nums[mid] == target:
                 res = mid
-                # 向左缩小
-                if findLeft:
-                    right = mid - 1
-                # 向右缩小
-                else:
+                if flag:
                     left = mid + 1
-            # 细节，一定要用elif
-            # 因为三个情况等价
-            elif nums[mid] < target:
-                left = mid + 1
-            else:
+                else:
+                    right = mid - 1
+            elif nums[mid] > target:
                 right = mid - 1
+            else:
+                left = mid + 1
 
         return res
 
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        res = [-1, -1]
-        res[0] = self.binarySearch(nums, target, True)
-        res[1] = self.binarySearch(nums, target, False)
+        if not nums:
+            return [-1, -1]
 
-        return res
+        leftRes = self.binarySearch(nums, target, False)
+        if leftRes == -1:
+            return [-1, -1]
+
+        rightRes = self.binarySearch(nums, target, True)
+
+        return [leftRes, rightRes]
 
 
-nums = [2, 2]
-target = 2
+nums = [5, 7, 7, 8, 8, 10]
+target = 8
 slt = Solution()
 print(slt.searchRange(nums, target))
