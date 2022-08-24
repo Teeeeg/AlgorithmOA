@@ -4,27 +4,35 @@ from typing import List
 class DisjointSet:
 
     def __init__(self, size) -> None:
-        self.root = [i for i in range(size + 1)]
+        self.size = size
+        self.root = [i for i in range(self.size)]
 
     def find(self, x):
-        if self.root[x] != x:
-            self.root[x] = self.find(self.root[x])
+        if self.root[x] == x:
+            return x
+
+        self.root[x] = self.find(self.root[x])
         return self.root[x]
 
     def union(self, x, y):
         rootX = self.find(x)
         rootY = self.find(y)
+
         if rootX != rootY:
-            self.root[rootX] = rootY
+            self.root[rootY] = rootX
 
     def isConnected(self, x, y):
         return self.find(x) == self.find(y)
 
 
 class Solution:
-
+    # [u, v] u -> v
+    # a tree add one edge it will have two vertex with two indegree
+    # if it has no two indegree, it go normal DisjointSet
     def isTree(self, edges: List[List[int]], removable: List[int]):
-        uf = DisjointSet(len(edges))
+        # use DisjointSet to judge it is a tree or not
+        n = len(edges)
+        uf = DisjointSet(n + 1)
         for edge in edges:
             if edge == removable:
                 continue
@@ -35,32 +43,32 @@ class Solution:
 
     def findRedundantDirectedConnection(self, edges: List[List[int]]) -> List[int]:
         n = len(edges)
-
         inDegrees = [0] * (n + 1)
-        twoDegrees = 0
-
+        # count indegrees
         for edge in edges:
             inDegrees[edge[1]] += 1
 
-        for i in range(n, -1, -1):
-            inDegree = inDegrees[i]
-            if inDegree == 2:
-                twoDegrees = i
+        # get twodegree vertex
+        twoDegreeVertex = 0
+        for i in range(n + 1):
+            if inDegrees[i] == 2:
+                twoDegreeVertex = i
 
-        removables = []
-        if twoDegrees != 0:
+        removable = []
+        # if it has two indegrees
+        if twoDegreeVertex != 0:
+            # get edges
             for edge in edges:
-                if twoDegrees == edge[1]:
-                    removables.append(edge)
-
-        if removables:
-            if self.isTree(edges, removables[1]):
-                return removables[1]
+                if twoDegreeVertex == edge[1]:
+                    removable.append(edge)
+            # return the last one, so judge the last first
+            if self.isTree(edges, removable[1]):
+                return removable[1]
             else:
-                return removables[0]
+                return removable[0]
 
-        uf = DisjointSet(len(edges))
-
+        uf = DisjointSet(n + 1)
+        # if it do not have two indegrees
         for edge in edges:
             if uf.isConnected(edge[0], edge[1]):
                 return edge
@@ -69,6 +77,6 @@ class Solution:
         return []
 
 
-edges = [[1, 5], [3, 2], [2, 4], [4, 5], [5, 3]]
+edges = [[2, 1], [3, 1], [4, 2], [1, 4]]
 slt = Solution()
 print(slt.findRedundantDirectedConnection(edges))

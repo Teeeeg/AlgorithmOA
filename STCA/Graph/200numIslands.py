@@ -3,40 +3,29 @@ from typing import List
 
 class Solution:
 
+    def numIslandsCore(self, row, col):
+        self.grid[row][col] = '0'
+
+        for dir in self.dirs:
+            nr = row + dir[0]
+            nc = col + dir[1]
+            if 0 <= nr < self.m and 0 <= nc < self.n and self.grid[nr][nc] == '1':
+                self.numIslandsCore(nr, nc)
+
     def numIslands(self, grid: List[List[str]]) -> int:
-        m = len(grid)
-        n = len(grid[0])
-        visited = [[False] * n for _ in range(m)]
+        self.m = len(grid)
+        self.n = len(grid[0])
+        self.grid = grid
+        self.dirs = [[0, 1], [1, 0], [0, -1], [-1, 0]]
         res = 0
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == '1' and not visited[i][j]:
-                    # 每次找到一个新入口，岛屿数量加一
+
+        for row in range(self.m):
+            for col in range(self.n):
+                if self.grid[row][col] == '1':
+                    self.numIslandsCore(row, col)
                     res += 1
-                    # 利用bfs把访问过的岛屿标记
-                    self.bfs(visited, grid, [i, j])
 
         return res
-
-    # 广度优先
-    def bfs(self, visited, grid, source):
-        m = len(grid)
-        n = len(grid[0])
-        dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
-
-        # 每次入队的时候标记访问
-        queue = [source]
-        visited[source[0]][source[1]] = True
-
-        while queue:
-            # 当前节点
-            cur = queue.pop(0)
-            for dir in dirs:
-                next = [dir[0] + cur[0], dir[1] + cur[1]]
-                if 0 <= next[0] < m and 0 <= next[1] < n and grid[next[0]][
-                        next[1]] == '1' and not visited[next[0]][next[1]]:
-                    queue.append(next)
-                    visited[next[0]][next[1]] = True
 
 
 grid = [["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]]

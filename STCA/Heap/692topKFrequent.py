@@ -1,46 +1,54 @@
-from heapq import heappop, heappush
-from typing import List
+from typing import Any, Counter, List
 
 
-class Entry:
-    # 自定义比较器
+class TrieNode:
 
-    def __init__(self, word, freq) -> None:
-        self.word = word
-        self.freq = freq
-
-    def __lt__(self, other):
-        # 若不想等则直接返回比较，freq小的弹出去
-        if self.freq != other.freq:
-            return self.freq < other.freq
-        else:
-            # 若相等，字典序大的弹出去
-            return self.word > other.word
+    def __init__(self) -> None:
+        self.children = {}
+        self.isWord = False
 
 
 class Solution:
 
+    def __init__(self) -> None:
+        self.res = []
+
+    def build(self, words: List[str]):
+        counter = Counter(words)
+        self.bucket = [Any] * len(words)
+
+        for word, freq in counter.items():
+            if self.bucket[freq] is None:
+                self.bucket[freq] = TrieNode()
+            node = self.bucket[freq]
+            for ch in word:
+                if ch not in node.children:
+                    node.children[ch] = TrieNode()
+                node = node.children[ch]
+            node.isWord = True
+
+    def getWord(self, node: TrieNode, word: str):
+        if node.isWord and self.k > 0:
+            self.res.append(word)
+            self.k -= 1
+        for i in range(26):
+            ch = chr(ord('a') + i)
+            if ch in node.children:
+                self.getWord(node.children[ch], word + ch)
+
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
-        dct = {}
-        for word in words:
-            dct[word] = dct.get(word, 0) + 1
+        self.build(words)
+        self.k = k
 
-        minHeap = []
-        for word, freq in dct.items():
-            entry = Entry(word, freq)
-            heappush(minHeap, entry)
-            if len(minHeap) > k:
-                heappop(minHeap)
+        for i in range(len(words) - 1, -1, -1):
+            if self.bucket[i]:
+                self.getWord(self.bucket[i], '')
 
-        res = []
-        # 输出的时候应该用heappop
-        # 才能保证有序性
-        while minHeap:
-            res.append(heappop(minHeap).word)
-        return res[::-1]
+        return self.res
 
 
 words = ["i", "love", "leetcode", "i", "love", "coding"]
 k = 3
+
 slt = Solution()
 print(slt.topKFrequent(words, k))

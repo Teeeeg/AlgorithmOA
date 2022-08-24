@@ -4,16 +4,20 @@ from typing import List
 class DisjointSet:
 
     def __init__(self, size) -> None:
-        self.root = [i for i in range(size + 1)]
+        self.size = size
+        self.root = [i for i in range(self.size)]
 
     def find(self, x):
-        if self.root[x] != x:
-            self.root[x] = self.find(self.root[x])
+        if self.root[x] == x:
+            return x
+
+        self.root[x] = self.find(self.root[x])
         return self.root[x]
 
     def union(self, x, y):
         rootX = self.find(x)
         rootY = self.find(y)
+
         if rootX != rootY:
             self.root[rootY] = rootX
 
@@ -22,10 +26,11 @@ class DisjointSet:
 
 
 class Solution:
-
+    # for each adding of the edges, if both vertex have been connected
+    # this edge is a redundant one
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         n = len(edges)
-        uf = DisjointSet(n)
+        uf = DisjointSet(n + 1)
 
         for edge in edges:
             if uf.isConnected(edge[0], edge[1]):
@@ -33,8 +38,3 @@ class Solution:
             uf.union(edge[0], edge[1])
 
         return []
-
-
-edges = [[1, 2], [1, 3], [2, 3]]
-slt = Solution()
-print(slt.findRedundantConnection(edges))
