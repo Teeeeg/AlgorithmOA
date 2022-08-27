@@ -65,7 +65,7 @@ class Solution1:
         self.longestPath = []
 
         dist[k] = 0
-
+        # a shortest path between n nodes has n-1 edges
         for _ in range(n - 1):
             updated = False
             for edge in times:
