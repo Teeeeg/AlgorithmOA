@@ -1,4 +1,5 @@
 # Definition for a Node.
+from collections import deque
 from typing import List
 
 
@@ -9,38 +10,44 @@ class Node(object):
         self.children = children
 
 
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+
+
 class Codec:
-    # serialized structure
-    # root.val + children size + children
+
     def serialize(self, root: 'Node') -> str:
-        # '#' indicates is none
         if not root:
             return '#'
-        res = ''
-        res += str(root.val) + ',' + str(len(root.children))
 
-        # recursively update
+        childrenRes = ''
         for child in root.children:
-            res += ',' + self.serialize(child)
-        return res
+            childrenRes += self.serialize(child)
 
-    def deserializeCore(self, dataQueue: List[int]):
-        # base condition
+        return f'{root.val},{len(root.children)},{childrenRes}'  # type: ignore
+
+    def deserializeCore(self, dataQueue):
         if not dataQueue:
             return
 
-        val = dataQueue.pop(0)
-        # '#' means empty node
-        if val == '#':
+        cur = dataQueue.popleft()
+        if cur == '#':
             return
 
-        root = Node(int(val), [])
-        size = int(dataQueue.pop(0))
-        # use size to iterate certain size of the string for children
-        for _ in range(size):
-            root.children.append(self.deserializeCore(dataQueue))  # type: ignore
+        childrenSize = int(dataQueue.popleft())
+        root = Node(cur, [])
+
+        for _ in range(childrenSize):
+            root.children.append(self.deserializeCore(dataQueue))
+
         return root
 
     def deserialize(self, data: str) -> 'Node':
-        dataQueue = data.split(',')
-        return self.deserializeCore(dataQueue)  # type: ignore
+        dataQueue = deque(data.split(','))
+
+        return self.deserializeCore(dataQueue)
