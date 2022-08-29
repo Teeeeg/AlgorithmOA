@@ -42,6 +42,6 @@ def mergeSort(nums: List[int]):
     mergeSortCore(nums, 0, n - 1)
 
 
-nums = [1, 3, 2, 3, 1]
+nums = [1, 3, 2, 3, 1, 1]
 mergeSort(nums)
 print(nums)
