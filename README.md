@@ -2,7 +2,7 @@
 [44. Wildcard Matching](https://leetcode.cn/problems/wildcard-matching)  
 [291. Word Pattern II](https://leetcode.cn/problems/word-pattern-ii)  
 [139. Word Break](https://leetcode.cn/problems/word-break)
-[300. Longest Increasing Subsequence](https://leetcode.cn/problems/longest-increasing-subsequence)
+[300. Longest Increasing Subsequence](https://leetcode.cn/problems/longest-increasing-subsequence)  
 [368. Largest Divisible Subset](https://leetcode.cn/problems/largest-divisible-subset)  
 
 ## Two Pointers
@@ -27,5 +27,9 @@
 [312. Burst Balloons](https://leetcode.cn/problems/burst-balloons)  
 
 ### Sepration  
-[139. Word Break](https://leetcode.cn/problems/word-break)
+[139. Word Break](https://leetcode.cn/problems/word-break)  
 [91. Decode Ways](https://leetcode.cn/problems/decode-ways)  
+
+### Sequence
+[300. Longest Increasing Subsequence](https://leetcode.cn/problems/longest-increasing-subsequence)  
+[354. Russian Doll Envelopes](https://leetcode.cn/problems/russian-doll-envelopes/)  
