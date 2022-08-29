@@ -3,7 +3,7 @@
 [291. Word Pattern II](https://leetcode.cn/problems/word-pattern-ii)  
 [139. Word Break](https://leetcode.cn/problems/word-break)
 [300. Longest Increasing Subsequence](https://leetcode.cn/problems/longest-increasing-subsequence)  
-[368. Largest Divisible Subset](https://leetcode.cn/problems/largest-divisible-subset)  
+  
 
 ## Two Pointers
 [424. Longest Repeating Character Replacement](https://leetcode.cn/problems/longest-repeating-character-replacement)  
@@ -22,6 +22,11 @@
 [716. Max Stack](https://leetcode.cn/problems/max-stack)  
 
 ## Dynamic
+### Match
+[1143. Longest Common Subsequence](https://leetcode.cn/problems/longest-common-subsequence/)  
+[44. Wildcard Matching](https://leetcode.cn/problems/wildcard-matching/)  
+[72. Edit Distance](https://leetcode.cn/problems/edit-distance/)  
+
 ### Segment  
 [1000. Minimum Cost to Merge Stones](https://leetcode.cn/problems/minimum-cost-to-merge-stones/)  
 [312. Burst Balloons](https://leetcode.cn/problems/burst-balloons)  
@@ -32,4 +37,5 @@
 
 ### Sequence
 [300. Longest Increasing Subsequence](https://leetcode.cn/problems/longest-increasing-subsequence)  
-[354. Russian Doll Envelopes](https://leetcode.cn/problems/russian-doll-envelopes/)  
+[354. Russian Doll Envelopes](https://leetcode.cn/problems/russian-doll-envelopes/)   
+[368. Largest Divisible Subset](https://leetcode.cn/problems/largest-divisible-subset)   
