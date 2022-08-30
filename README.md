@@ -6,9 +6,9 @@
   
 
 ## BFS
-✅[1565 · Modern Ludo I](https://www.lintcode.com/problem/1565/)  
+[1565 · Modern Ludo I](https://www.lintcode.com/problem/1565/)  
 [743. Network Delay Time](https://leetcode.cn/problems/network-delay-time/)  
-✅[499. The Maze III](https://leetcode.cn/problems/the-maze-iii/)
+[499. The Maze III](https://leetcode.cn/problems/the-maze-iii/)
 
 ## Two Pointers
 [424. Longest Repeating Character Replacement](https://leetcode.cn/problems/longest-repeating-character-replacement)  
@@ -34,7 +34,7 @@
 ## Tree
 [428. Serialize and Deserialize N-ary Tree](https://leetcode.cn/problems/serialize-and-deserialize-n-ary-tree)  
 [543. Diameter of Binary Tree](https://leetcode.cn/problems/diameter-of-binary-tree/)   
-✅[1522. Diameter of N-Ary Tree](https://leetcode.cn/problems/diameter-of-n-ary-tree/)  
+[1522. Diameter of N-Ary Tree](https://leetcode.cn/problems/diameter-of-n-ary-tree/)  
 
 
 ## Struct
