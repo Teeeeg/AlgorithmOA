@@ -5,6 +5,11 @@
 [300. Longest Increasing Subsequence](https://leetcode.cn/problems/longest-increasing-subsequence)  
   
 
+## BFS
+✅[1565 · Modern Ludo I](https://www.lintcode.com/problem/1565/)  
+[743. Network Delay Time](https://leetcode.cn/problems/network-delay-time/)  
+✅[499. The Maze III](https://leetcode.cn/problems/the-maze-iii/)
+
 ## Two Pointers
 [424. Longest Repeating Character Replacement](https://leetcode.cn/problems/longest-repeating-character-replacement)  
 [76. Minimum Window Substring](https://leetcode.cn/problems/minimum-window-substring/)   
@@ -27,7 +32,9 @@
 
 
 ## Tree
-[428. Serialize and Deserialize N-ary Tree](https://leetcode.cn/problems/serialize-and-deserialize-n-ary-tree)   
+[428. Serialize and Deserialize N-ary Tree](https://leetcode.cn/problems/serialize-and-deserialize-n-ary-tree)  
+[543. Diameter of Binary Tree](https://leetcode.cn/problems/diameter-of-binary-tree/)   
+✅[1522. Diameter of N-Ary Tree](https://leetcode.cn/problems/diameter-of-n-ary-tree/)  
 
 
 ## Struct
