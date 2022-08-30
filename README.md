@@ -7,12 +7,24 @@
 
 ## Two Pointers
 [424. Longest Repeating Character Replacement](https://leetcode.cn/problems/longest-repeating-character-replacement)  
+[76. Minimum Window Substring](https://leetcode.cn/problems/minimum-window-substring/)   
+[475. Heaters](https://leetcode.cn/problems/heaters/)  
+[340. Longest Substring with At Most K Distinct Characters](https://leetcode.cn/problems/longest-substring-with-at-most-k-distinct-characters/)  
 
 ## Merge Sort
 [311. Sparse Matrix Multiplication](https://leetcode.cn/problems/sparse-matrix-multiplication)  
 
 ## Binary Search
 [4. Median of Two Sorted Arrays](https://leetcode.cn/problems/median-of-two-sorted-arrays)  
+[658. Find K Closest Elements](https://leetcode.cn/problems/find-k-closest-elements/)  
+[34. Find First and Last Position of Element in Sorted Array](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)  
+[852. Peak Index in a Mountain Array](https://leetcode.cn/problems/peak-index-in-a-mountain-array/)  
+[153. Find Minimum in Rotated Sorted Array](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/)  
+[154. Find Minimum in Rotated Sorted Array II](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/)  
+[33. Search in Rotated Sorted Array](https://leetcode.cn/problems/search-in-rotated-sorted-array/)  
+[162. Find Peak Element](https://leetcode.cn/problems/find-peak-element/)  
+[183 · Wood Cut](https://www.lintcode.com/problem/183/)  
+
 
 ## Tree
 [428. Serialize and Deserialize N-ary Tree](https://leetcode.cn/problems/serialize-and-deserialize-n-ary-tree)   
