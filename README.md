@@ -33,8 +33,8 @@
 ✅[305. Number of Islands II](https://leetcode.cn/problems/number-of-islands-ii/)  
 
 ## MonoStack
-✅[84. Largest Rectangle in Histogram](https://leetcode.cn/problems/largest-rectangle-in-histogram/)  
-✅[85. Maximal Rectangle](https://leetcode.cn/problems/maximal-rectangle/)  
+[84. Largest Rectangle in Histogram](https://leetcode.cn/problems/largest-rectangle-in-histogram/)  
+[85. Maximal Rectangle](https://leetcode.cn/problems/maximal-rectangle/)  
 ✅[862. Shortest Subarray with Sum at Least K](https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/)  
 ✅[42. Trapping Rain Water](https://leetcode.cn/problems/trapping-rain-water/)  
 

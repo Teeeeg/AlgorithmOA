@@ -8,7 +8,9 @@ def getPivotIndex(left, right):
 
 # 双边循环
 def partition(nums, left, right):
-    pivotVal = nums[left]
+    pivotIndex = randint(left, right)
+    pivotVal = nums[pivotIndex]
+    nums[left], nums[pivotIndex] = nums[pivotIndex], nums[left]
     l, r = left, right
     while l < r:
         # 必须先从最右边找到一个比它小的
