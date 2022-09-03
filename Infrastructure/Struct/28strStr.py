@@ -5,7 +5,7 @@ class Solution:
             return -1
 
         BASE = 131
-        BUCKET = 10**9 + 7
+        BUCKET = 1e9 + 7
 
         n = len(needle)
         needleHash = 0
@@ -31,7 +31,7 @@ class Solution:
         return -1
 
 
-haystack = "hello"
-needle = "ll"
+haystack = "mississippi"
+needle = "issip"
 slt = Solution()
 print(slt.strStr(haystack, needle))

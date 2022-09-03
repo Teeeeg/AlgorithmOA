@@ -96,3 +96,12 @@
 [300. Longest Increasing Subsequence](https://leetcode.cn/problems/longest-increasing-subsequence)  
 [354. Russian Doll Envelopes](https://leetcode.cn/problems/russian-doll-envelopes/)   
 [368. Largest Divisible Subset](https://leetcode.cn/problems/largest-divisible-subset)   
+
+
+### Interval  
+[759. Employee Free Time](https://leetcode.cn/problems/employee-free-time/)  
+
+
+### Prefix Sum
+✅[194 · Find Words](https://www.lintcode.com/problem/194/)  
+✅[304. Range Sum Query 2D - Immutable](https://leetcode.cn/problems/range-sum-query-2d-immutable/)  

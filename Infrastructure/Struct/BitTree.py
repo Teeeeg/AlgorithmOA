@@ -25,14 +25,21 @@ class BitTree:
         return self.nums[index]
 
     def set(self, index, val):
+        prev = self.nums[index]
+        delta = val - prev
+        self.add(index, delta)
         self.nums[index] = val
 
     def getSum(self, index):
-        # compensate the pivot index of sums
+        # sums comes with 0 ->
         # accumerate all the value of its child node
         res = 0
-        index += 1
         while index > 0:
             res += self.bitSums[index]
             index -= self.lowBit(index)
         return res
+
+
+nums = [1, 3, 5]
+bitTree = BitTree(nums)
+print(bitTree.getSum(3) - bitTree.getSum(0))
