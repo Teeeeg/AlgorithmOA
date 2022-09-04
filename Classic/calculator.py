@@ -73,7 +73,8 @@ class Solution:
                 self.nums.append(int(token))
                 continue
 
-            if i > 0 and expression[i - 1] == '(' or expression[i - 1] == '-' or expression[i - 1] == '+':
+            # case (- 1 + 2)
+            if i > 0 and expression[i - 1] == '(':
                 self.nums.append(0)
 
             while self.ops and self.ops[-1] != '(':

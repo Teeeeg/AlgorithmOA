@@ -1,6 +1,3 @@
-from typing import Any
-
-
 def printList(head):
     res = []
     while head:
@@ -14,7 +11,7 @@ class Node:
 
     def __init__(self, value):
         self.value = value
-        self.next = Any
+        self.next = None
 
 
 class Solution:
@@ -52,13 +49,13 @@ class Solution:
             digit = digitA - digitB + carry
             if digit > 0:
                 cur.next = Node(digit)
-                cur = cur.next
             elif digit < 0:
                 cur.next = Node(digit + 10)
-                cur = cur.next
                 carry = -1
             else:
-                continue
+                cur.next = Node(digit)
+
+            cur = cur.next
 
         return self.reverse(resHead.next)
 
@@ -68,8 +65,7 @@ headA.next = Node(2)
 headA.next.next = Node(2)
 
 headB = Node(1)
-headB.next = Node(1)
-headB.next.next = Node(2)
+headB.next = Node(2)
 
 printList(headA)
 printList(headB)
