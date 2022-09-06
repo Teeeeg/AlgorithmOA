@@ -6,8 +6,8 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         n = len(prices)
 
-        # opt[0][i] means sold or haven't buy
-        # opt[1][i] means buy
+        # opt[0][i] to sold
+        # opt[1][i] to buy
         opt = [[0] * n for _ in range(2)]
         opt[1][0] = -prices[0]
 

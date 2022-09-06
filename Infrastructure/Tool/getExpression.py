@@ -46,13 +46,11 @@ def getExpression1(s):
             i += 1
         else:
             val = 0
-            j = i
-            while j < n and s[j].isnumeric():
-                val = val * 10 + int(s[j])
-                j += 1
+            while i < n and s[i].isnumeric():
+                val = val * 10 + int(s[i])
+                i += 1
 
             expression.append(str(val))
-            i = j
 
     return expression
 

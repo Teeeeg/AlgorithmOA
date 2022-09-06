@@ -19,13 +19,13 @@ class Solution:
                 heappush(minHeap, (interval.end, 1))
 
         res = []
-        matched = 0
+        overLapped = 0
 
         while minHeap:
             left, flag = heappop(minHeap)
-            matched += flag
+            overLapped += flag
 
-            if matched == 0 and minHeap:
+            if overLapped == 0 and minHeap:
                 right = minHeap[0][0]
                 interval = Interval(left, right)
                 res.append(interval)

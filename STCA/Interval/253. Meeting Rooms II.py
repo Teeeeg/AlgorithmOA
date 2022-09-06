@@ -38,10 +38,10 @@ class Solution1:
             heappush(minHeap, (interval[1], -1))
 
         res = 0
-        matched = 0
+        overLapped = 0
 
         while minHeap:
-            matched += heappop(minHeap)[1]
-            res = max(res, matched)
+            overLapped += heappop(minHeap)[1]
+            res = max(res, overLapped)
 
         return res

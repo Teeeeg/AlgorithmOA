@@ -14,17 +14,17 @@ class Solution:
             boundaries.append((interval[1], 1))
 
         boundaries.sort()
-        isMatched = 0
+        overLapped = 0
         left = 0
         right = 0
         res = []
 
         for boundary in boundaries:
-            if isMatched == 0:
+            if overLapped == 0:
                 left = boundary[0]
-            isMatched += boundary[1]
+            overLapped += boundary[1]
 
-            if isMatched == 0:
+            if overLapped == 0:
                 right = boundary[0]
                 res.append([left, right])
 

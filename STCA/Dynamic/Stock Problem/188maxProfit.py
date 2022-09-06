@@ -4,8 +4,8 @@ from typing import List
 class Solution:
 
     def maxProfit(self, k: int, prices: List[int]) -> int:
-        # opt[i][even] sold
-        # opt[i][odd] buy
+        # opt[i][even] to sell
+        # opt[i][odd] to buy
         # opt[0][0] init
         n = len(prices)
         if not prices:
