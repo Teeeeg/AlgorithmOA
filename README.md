@@ -1,7 +1,3 @@
-✅[453. Minimum Moves to Equal Array Elements](https://leetcode.cn/problems/minimum-moves-to-equal-array-elements/)  
-
-
-
 ## Search  
 [44. Wildcard Matching](https://leetcode.cn/problems/wildcard-matching)  
 [291. Word Pattern II](https://leetcode.cn/problems/word-pattern-ii)  
@@ -102,10 +98,14 @@
 [368. Largest Divisible Subset](https://leetcode.cn/problems/largest-divisible-subset)   
 
 
-### Interval  
+## Interval  
 [759. Employee Free Time](https://leetcode.cn/problems/employee-free-time/)  
 
 
-### Prefix Sum
+## Prefix Sum
 ✅[194 · Find Words](https://www.lintcode.com/problem/194/)  
 ✅[304. Range Sum Query 2D - Immutable](https://leetcode.cn/problems/range-sum-query-2d-immutable/)  
+
+
+## Greedy
+[453. Minimum Moves to Equal Array Elements](https://leetcode.cn/problems/minimum-moves-to-equal-array-elements/)   

@@ -12,11 +12,11 @@ class Solution:
         for word in wordDict:
             maxLen = max(maxLen, len(word))
 
+        # because str is continous and still
+        # so do permutation rather than combination
         for i in range(1, n + 1):
-            for length in range(1, maxLen + 1):
-                j = i - length
-
-                if j < 0:
+            for j in range(i - 1, -1, -1):
+                if i - j > maxLen:
                     break
 
                 word = s[j:i]
@@ -27,21 +27,7 @@ class Solution:
         return opt[-1]
 
 
-class Solution1:
-    # as 0/1 package
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        n = len(s)
-        opt = [False] * (n + 1)
-        opt[0] = True
-
-        for i in range(1, n + 1):
-            for word in wordDict:
-                length = len(word)
-                if not i >= length:
-                    continue
-
-                if s[i - length:i] == word and opt[i - length]:
-                    opt[i] = True
-                    break
-
-        return opt[-1]
+s = "leetcode"
+wordDict = ["leet", "code"]
+slt = Solution()
+print(slt.wordBreak(s, wordDict))

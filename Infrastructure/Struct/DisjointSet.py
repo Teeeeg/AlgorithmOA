@@ -15,9 +15,8 @@ class DisjointSet:
         return True
 
     def find(self, x):
-        if x == self.root.get(x, x):
-            return x
-        self.root[x] = self.find(self.root[x])
+        if x != self.root[x]:
+            self.root[x] = self.find(self.root[x])
         return self.root[x]
 
     def union(self, x, y):
