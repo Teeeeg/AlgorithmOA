@@ -3,28 +3,33 @@ from typing import List
 
 class Solution:
 
-    def permuteUniqueCore(self, path):
-        if len(path) == self.n:
-            self.res.append(path[:])
-            return
+    def permuteUniqueCore(self, nums, visited, path, res):
+        n = len(nums)
 
-        for i in range(self.n):
-            if self.used[i] == 0:
-                if i > 0 and self.used[i - 1] and self.nums[i] == self.nums[i - 1]:
-                    continue
-                self.used[i] = 1
-                path.append(self.nums[i])
-                self.permuteUniqueCore(path)
-                path.pop()
-                self.used[i] = 0
+        if len(path) == n:
+            res.append(list(path))
+
+        for i in range(n):
+            if visited[i]:
+                continue
+
+            if i > 0 and nums[i] == nums[i - 1] and not visited[i - 1]:
+                continue
+
+            path.append(nums[i])
+            visited[i] = 1
+            self.permuteUniqueCore(nums, visited, path, res)
+            path.pop()
+            visited[i] = 0
 
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        self.n = len(nums)
-        self.nums = sorted(nums)
-        self.used = [0] * self.n
-        self.res = []
-        self.permuteUniqueCore([])
-        return self.res
+        res = []
+        visited = [0] * len(nums)
+        nums.sort()
+
+        self.permuteUniqueCore(nums, visited, [], res)
+
+        return res
 
 
 nums = [1, 1, 2]

@@ -13,8 +13,10 @@ class Solution:
 
         for i in range(1, n1 + 1):
             for j in range(1, n2 + 1):
-                context = 1 if word1[i - 1] != word2[j - 1] else 0
-                opt[i][j] = min(opt[i][j - 1] + 1, opt[i - 1][j] + 1, opt[i - 1][j - 1] + context)
+                if word1[i - 1] == word2[j - 1]:
+                    opt[i][j] = opt[i - 1][j - 1]
+                else:
+                    opt[i][j] = min(opt[i][j - 1], opt[i - 1][j], opt[i - 1][j - 1]) + 1
 
         return opt[-1][-1]
 
