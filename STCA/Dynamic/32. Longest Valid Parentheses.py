@@ -10,9 +10,7 @@ class Solution:
             if s[i] == '(':
                 opt[i] = 0
             else:
-                if s[i - 1] == '(':
-                    opt[i] = opt[i - 2] + 2
-                elif i - 1 - opt[i - 1] >= 0 and s[i - 1 - opt[i - 1]] == '(':
+                if i - 1 - opt[i - 1] >= 0 and s[i - 1 - opt[i - 1]] == '(':
                     opt[i] = opt[i - 1] + 2
                     if i - 2 - opt[i - 1] >= 0:
                         opt[i] += opt[i - 2 - opt[i - 1]]
@@ -23,6 +21,6 @@ class Solution:
         return res
 
 
-s = '((()()))'
+s = '()'
 slt = Solution()
 print(slt.longestValidParentheses(s))

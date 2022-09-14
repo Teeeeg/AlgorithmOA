@@ -11,7 +11,7 @@ class Solution:
         while left + 1 < right:
             mid = (left + right) // 2
 
-            if arr[mid] < arr[mid + 1]:
+            if arr[mid] <= arr[mid + 1]:
                 left = mid
             else:
                 right = mid
