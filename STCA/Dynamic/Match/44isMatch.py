@@ -1,12 +1,5 @@
 class Solution:
 
-    def isAllStars(self, p: str):
-        for ch in p:
-            if ch == '*':
-                return False
-
-        return True
-
     def isMatch(self, s: str, p: str) -> bool:
         n1 = len(s)
         n2 = len(p)
@@ -32,3 +25,9 @@ class Solution:
                     #         break
 
         return opt[-1][-1]
+
+
+s = "aab"
+p = "c*a*b"
+slt = Solution()
+print(slt.isMatch(s, p))

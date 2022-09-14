@@ -24,16 +24,14 @@ class Solution:
 
     def bfs(self, queue, steps, otherSteps):
 
-        while queue:
-            n = len(queue)
-            for _ in range(n):
-                curWord = queue.popleft()
-                step = steps[curWord]
-                for neighbor in self.getNeighbors(curWord, steps):
-                    if neighbor in otherSteps:
-                        return step + otherSteps[neighbor]
-                    steps[neighbor] = step + 1
-                    queue.append(neighbor)
+        for _ in range(len(queue)):
+            curWord = queue.popleft()
+            step = steps[curWord]
+            for neighbor in self.getNeighbors(curWord, steps):
+                if neighbor in otherSteps:
+                    return step + otherSteps[neighbor]
+                steps[neighbor] = step + 1
+                queue.append(neighbor)
 
         return -1
 
