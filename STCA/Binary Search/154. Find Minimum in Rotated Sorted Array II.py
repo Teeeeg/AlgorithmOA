@@ -7,6 +7,9 @@ class Solution:
         n = len(nums)
         left, right = 0, n - 1
 
+        while left + 1 < right and nums[left] == nums[right]:
+            right -= 1
+
         while left + 1 < right:
             mid = (left + right) // 2
 
