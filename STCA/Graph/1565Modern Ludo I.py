@@ -1,4 +1,4 @@
-from collections import deque
+from heapq import heappop, heappush
 from typing import (
     List,)
 
@@ -18,11 +18,19 @@ class Solution:
     def modern_ludo(self, length: int, connections: List[List[int]]) -> int:
         graph = self.buildGraph(length, connections)
         dist = {1: 0}
-        queue = deque([1])
+        minHeap = [(0, 1)]
 
-        while queue:
+        while minHeap:
+            cur = heappop(minHeap)[1]
+
+            # direct pass  dist + 0
+            for neighbor in graph[cur]:
+                if neighbor in dist and dist[neighbor] <= dist[cur]:
+                    continue
+                dist[neighbor] = dist[cur]
+                heappush(minHeap, (dist[neighbor], neighbor))
+
             # roll the dice  dist + 1
-            cur = queue.popleft()
             for step in range(1, 7):
                 neighbor = cur + step
                 if neighbor > length:
@@ -30,14 +38,7 @@ class Solution:
                 if neighbor in dist and dist[neighbor] <= dist[cur] + 1:
                     continue
                 dist[neighbor] = dist[cur] + 1
-                queue.append(neighbor)
-
-            # direct pass  dist + 0
-            for neighbor in graph[cur]:
-                if neighbor in dist and dist[neighbor] <= dist[cur]:
-                    continue
-                dist[neighbor] = dist[cur]
-                queue.append(neighbor)
+                heappush(minHeap, (dist[neighbor], neighbor))
 
         return dist[length] if length in dist else -1
 

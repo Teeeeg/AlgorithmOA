@@ -5,6 +5,7 @@ from typing import List
 class GridType:
     WALL = 1
 
+
 # directions
 DIRS = {'l': (0, -1), 'r': (0, 1), 'u': (-1, 0), 'd': (1, 0)}
 
@@ -44,6 +45,9 @@ class Solution:
 
         while queue:
             x, y = queue.popleft()
+            if holeTup == (x, y):
+                return dist[(x, y)][1]
+
             for dir in DIRS:
                 nextX, nextY = self.kickTheBall(maze, holeTup, x, y, dir)
                 newDist = dist[(x, y)][0] + abs(x - nextX) + abs(nextY - y)
@@ -52,9 +56,6 @@ class Solution:
                     continue
                 dist[(nextX, nextY)] = (newDist, newPath)  # type: ignore
                 queue.append((nextX, nextY))
-
-        if holeTup in dist:
-            return dist[holeTup][1]
 
         return 'impossible'
 
