@@ -16,18 +16,18 @@ class Solution:
         for i in range(n):
             prefixSum[i + 1] = prefixSum[i] + stones[i]
 
-        opt = [[10**9] * n for _ in range(n)]
+        dp = [[10**9] * n for _ in range(n)]
         for i in range(n):
-            opt[i][i] = 0
+            dp[i][i] = 0
 
         for length in range(2, n + 1):
             for i in range(n - length + 1):
                 j = i + length - 1
                 for k in range(i, j):
                     # merge [i: k] and [k+1: j]
-                    opt[i][j] = min(opt[i][j], opt[i][k] + opt[k + 1][j] + self.getSum(prefixSum, i, j))
+                    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + self.getSum(prefixSum, i, j))
 
-        return opt[0][n - 1]
+        return dp[0][n - 1]
 
 
 stones = [3, 4, 3]
