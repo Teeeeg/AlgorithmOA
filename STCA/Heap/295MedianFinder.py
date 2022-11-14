@@ -23,7 +23,7 @@ class MedianFinder:
             # 把当前后面最小的放到前面去
             heappush(self.minHeap, -heappop(self.maxHeap))
         # 后面多了，把前面的最大放到后面去
-        elif len(self.maxHeap) < len(self.minHeap):
+        if len(self.maxHeap) < len(self.minHeap):
             heappush(self.maxHeap, -heappop(self.minHeap))
 
     def findMedian(self) -> float:
