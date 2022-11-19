@@ -15,3 +15,6 @@ def getFactors(num):
         factor += 1
 
     return factors
+
+
+print(getFactors(12))
