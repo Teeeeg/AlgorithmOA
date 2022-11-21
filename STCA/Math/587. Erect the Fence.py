@@ -4,7 +4,7 @@ from typing import List
 class Solution:
 
     def getRotation(self, A, B, C):
-        return ((B[1] - A[1]) * (C[0] - A[0])) - ((B[0] - A[0]) * (C[1] - A[1]))
+        return ((B[0] - A[0]) * (C[1] - A[1])) - ((B[1] - A[1]) * (C[0] - A[0]))
 
     def outerTrees(self, trees: List[List[int]]) -> List[List[int]]:
         if len(trees) < 3:
@@ -18,7 +18,7 @@ class Solution:
         uppers.append(sortedTrees[1])
 
         for i in range(2, n):
-            while len(uppers) >= 2 and self.getRotation(uppers[-1], uppers[-2], sortedTrees[i]) < 0:
+            while len(uppers) >= 2 and self.getRotation(uppers[-1], uppers[-2], sortedTrees[i]) > 0:
                 uppers.pop()
 
             uppers.append(sortedTrees[i])
@@ -28,7 +28,7 @@ class Solution:
         lowers.append(sortedTrees[-2])
 
         for i in range(n - 3, -1, -1):
-            while len(lowers) >= 2 and self.getRotation(lowers[-1], lowers[-2], sortedTrees[i]) < 0:
+            while len(lowers) >= 2 and self.getRotation(lowers[-1], lowers[-2], sortedTrees[i]) > 0:
                 lowers.pop()
 
             lowers.append(sortedTrees[i])
