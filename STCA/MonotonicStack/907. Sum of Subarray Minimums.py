@@ -9,6 +9,7 @@ class Solution:
         monoStack = []
         res = 0
 
+        # add a 0 to the tail for popping the last num
         for i in range(n + 1):
             curNum = 0
             if i < n:
