@@ -10,23 +10,27 @@ class TreeNode:
         self.right = right
 
 
+MIN = -10**9 + 7
+
+
 class Solution:
 
-    def maxPathSumCore(self, root: Optional[TreeNode], res):
+    def maxPathSumCore(self, root, res):
         if not root:
-            return 0
-        # keep in mind if the sum is negative
-        leftSum = max(self.maxPathSumCore(root.left, res), 0)
-        rightSum = max(self.maxPathSumCore(root.right, res), 0)
+            return MIN
 
-        curSum = leftSum + root.val + rightSum
-        if curSum > res['maxSum']:
-            res['maxSum'] = curSum
+        leftMax = max(self.maxPathSumCore(root.left, res), 0)
+        rightMax = max(self.maxPathSumCore(root.right, res), 0)
 
-        return max(leftSum, rightSum) + root.val
+        curMax = max(leftMax, rightMax) + root.val
+
+        res['maxPathSum'] = max(res['maxPathSum'], leftMax + root.val + rightMax)
+
+        return curMax
 
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        res = {'maxSum': -10**9}
+        res = {'maxPathSum': MIN}
+
         self.maxPathSumCore(root, res)
 
-        return res['maxSum']
+        return res['maxPathSum']
