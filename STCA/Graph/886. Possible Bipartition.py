@@ -4,38 +4,44 @@ from typing import List
 
 class Solution:
 
-    def buildGraph(self, n: int, dislikes: List[List[int]]):
+    def buildGraph(self, n, dislikes):
         graph = {i: set() for i in range(1, n + 1)}
-        for a, b in dislikes:
-            graph[a].add(b)
-            graph[b].add(a)
+        for dislike in dislikes:
+            graph[dislike[0]].add(dislike[1])
+            graph[dislike[1]].add(dislike[0])
 
         return graph
 
-    def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
-        if not dislikes:
-            return True
+    def bfs(self, graph, index, groups):
+        queue = deque()
+        queue.append(index)
+        groups[index] = 1
 
-        p2Index = [0] * (n + 1)
+        while queue:
+            cur = queue.popleft()
+            for nbr in graph[cur]:
+                print(nbr)
+                if groups[nbr] != 0 and groups[cur] == groups[nbr]:
+                    return False
+                if groups[nbr] != 0:
+                    continue
+
+                groups[nbr] = 1 if groups[cur] == 2 else 2
+                queue.append(nbr)
+
+        return True
+
+    def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
         graph = self.buildGraph(n, dislikes)
+        groups = [0] * (n + 1)
 
         for i in range(1, n + 1):
-            if p2Index[i] != 0:
+            if groups[i]:
                 continue
 
-            queue = deque()
-            queue.append(i)
-            p2Index[i] = 1
+            if not self.bfs(graph, i, groups):
+                return False
 
-            while queue:
-                cur = queue.popleft()
-                for neighbor in graph[cur]:
-                    if p2Index[cur] == p2Index[neighbor] and p2Index[neighbor] != 0:
-                        return False
-                    if p2Index[neighbor] != 0:
-                        continue
-                    p2Index[neighbor] = 1 if p2Index[cur] == 2 else 2
-                    queue.append(neighbor)
         return True
 
 
