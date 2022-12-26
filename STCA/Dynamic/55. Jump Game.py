@@ -10,17 +10,17 @@ class Solution:
             return False
 
         n = len(nums)
-        # opt[i] means it is reachable at index of i
-        opt = [False] * n
-        opt[0] = True
+        # dp[i] means it is reachable at index of i
+        dp = [False] * n
+        dp[0] = True
 
         for i in range(1, n):
             for j in range(i - 1, -1, -1):
-                if opt[j] and j + nums[j] >= i:
-                    opt[i] = True
+                if dp[j] and j + nums[j] >= i:
+                    dp[i] = True
                     break
 
-        return opt[-1]
+        return dp[-1]
 
 
 class Solution1:
